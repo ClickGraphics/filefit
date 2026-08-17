@@ -1,0 +1,11 @@
+{
+  "name": "FileFit",
+  "short_name": "FileFit",
+  "description": "Ajusta imágenes a requisitos exactos de formato, dimensiones y peso.",
+  "start_url": "/filefit/",
+  "scope": "/filefit/",
+  "display": "standalone",
+  "background_color": "#07101d",
+  "theme_color": "#0b1020",
+  "icons": []
+}
