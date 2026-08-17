@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Haz que una imagen cumpla un formato, dimensiones y peso máximo exactos. Gratis, privado y procesado en tu navegador.">
+  <title>FileFit — Haz que tu imagen cumpla los requisitos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="FileFit inicio">
+      <span class="brand-mark" aria-hidden="true">F</span>
+      <span>FileFit</span>
+    </a>
+    <span class="privacy-pill">🔒 Procesamiento local</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">ARCHIVO RECHAZADO → ARCHIVO LISTO</p>
+      <h1>Haz que tu imagen cumpla <span>exactamente</span> los requisitos.</h1>
+      <p class="lead">Indica formato, dimensiones y peso máximo. FileFit hace el resto sin subir tu imagen a ningún servidor.</p>
+    </section>
+
+    <section class="tool-card" aria-labelledby="tool-title">
+      <h2 id="tool-title" class="sr-only">Ajustar imagen</h2>
+
+      <label class="dropzone" id="dropzone" for="fileInput">
+        <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+        <span class="drop-icon" aria-hidden="true">＋</span>
+        <strong>Sube tu imagen</strong>
+        <span>JPG, PNG o WebP · también puedes arrastrarla aquí</span>
+      </label>
+
+      <div id="filePanel" class="file-panel hidden" aria-live="polite">
+        <img id="preview" alt="Vista previa del archivo seleccionado">
+        <div class="file-meta">
+          <strong id="fileName"></strong>
+          <span id="fileDetails"></span>
+          <button id="changeFile" type="button" class="text-button">Cambiar archivo</button>
+        </div>
+      </div>
+
+      <div class="requirements">
+        <div class="section-heading">
+          <span class="step">1</span>
+          <div>
+            <h3>¿Qué te pide la página?</h3>
+            <p>Deja vacío lo que no sea requisito.</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <label>
+            <span>Formato</span>
+            <select id="format">
+              <option value="image/jpeg">JPG</option>
+              <option value="image/png">PNG</option>
+              <option value="image/webp">WebP</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Peso máximo</span>
+            <div class="input-unit">
+              <input id="maxKb" type="number" inputmode="numeric" min="1" placeholder="200">
+              <span>KB</span>
+            </div>
+          </label>
+
+          <label>
+            <span>Ancho</span>
+            <div class="input-unit">
+              <input id="width" type="number" inputmode="numeric" min="1" placeholder="600">
+              <span>px</span>
+            </div>
+          </label>
+
+          <label>
+            <span>Alto</span>
+            <div class="input-unit">
+              <input id="height" type="number" inputmode="numeric" min="1" placeholder="600">
+              <span>px</span>
+            </div>
+          </label>
+        </div>
+
+        <label class="check-row">
+          <input id="coverCrop" type="checkbox" checked>
+          <span>
+            <strong>Recortar para llenar las dimensiones</strong>
+            <small>Evita deformar la imagen cuando el ancho y alto cambian de proporción.</small>
+          </span>
+        </label>
+      </div>
+
+      <div class="action-wrap">
+        <button id="fitButton" class="primary-button" type="button" disabled>
+          <span id="buttonText">Arreglar mi archivo</span>
+          <span aria-hidden="true">→</span>
+        </button>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </div>
+
+      <div id="result" class="result hidden" aria-live="polite">
+        <div class="result-header">
+          <span class="success-icon">✓</span>
+          <div>
+            <p>ARCHIVO LISTO</p>
+            <h3>Cumple tus requisitos</h3>
+          </div>
+        </div>
+
+        <div class="comparison">
+          <div>
+            <span>Antes</span>
+            <strong id="beforeSize">—</strong>
+            <small id="beforeDims">—</small>
+          </div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div>
+            <span>Después</span>
+            <strong id="afterSize">—</strong>
+            <small id="afterDims">—</small>
+          </div>
+        </div>
+
+        <ul id="checks" class="checks"></ul>
+
+        <a id="downloadButton" class="download-button" download>Descargar archivo</a>
+        <button id="resetButton" class="secondary-button" type="button">Ajustar otro archivo</button>
+      </div>
+    </section>
+
+    <section class="trust-grid">
+      <article>
+        <span>🔒</span>
+        <h3>Privado de verdad</h3>
+        <p>Tu imagen se procesa en tu navegador. No necesitamos subirla ni almacenarla.</p>
+      </article>
+      <article>
+        <span>⚡</span>
+        <h3>Sin registro</h3>
+        <p>No hay cuentas, correos ni pasos innecesarios. Subir, ajustar y descargar.</p>
+      </article>
+      <article>
+        <span>◎</span>
+        <h3>Tamaño objetivo</h3>
+        <p>FileFit busca automáticamente una combinación de calidad y resolución que cumpla tu límite.</p>
+      </article>
+    </section>
+
+    <section class="content-section">
+      <h2>¿Por qué una página rechaza mi imagen?</h2>
+      <p>Los formularios suelen exigir un formato concreto, un límite de peso en KB o MB y dimensiones determinadas en píxeles. Una imagen puede verse perfectamente y aun así ser rechazada por incumplir uno de esos requisitos.</p>
+      <p>FileFit reúne esas correcciones en una sola herramienta: convierte el formato, ajusta las dimensiones, comprime el archivo y verifica el resultado antes de descargarlo.</p>
+    </section>
+  </main>
+
+  <footer>
+    <strong>FileFit</strong>
+    <span>Gratis · Sin registro · Tus archivos no salen de tu dispositivo</span>
+  </footer>
+
+  <canvas id="canvas" hidden></canvas>
+  <script src="app.js" defer></script>
+</body>
+</html>
